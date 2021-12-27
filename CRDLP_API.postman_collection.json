@@ -1,0 +1,315 @@
+{
+	"info": {
+		"_postman_id": "f0e71018-2b9f-48de-a492-3a13ca2d7a4c",
+		"name": "CRDLP_API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "GET_getCountries",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test(\"Response time is less than 500ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(500);\r",
+							"});\r",
+							"pm.test(\"Body contains string-NL\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"NL\");\r",
+							"});\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://crdlp-dev.glpg.com:446/countries?page=1&limit=15",
+					"protocol": "https",
+					"host": [
+						"crdlp-dev",
+						"glpg",
+						"com"
+					],
+					"port": "446",
+					"path": [
+						"countries"
+					],
+					"query": [
+						{
+							"key": "page",
+							"value": "1"
+						},
+						{
+							"key": "limit",
+							"value": "15"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET_getSpecialties",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test(\"Response time is less than 500ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(500);\r",
+							"});\r",
+							"pm.test(\"Body contains string-NL\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"NL\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://crdlp-dev.glpg.com:446/specialties?country_iso2=NL&cod_locale=nl_NL&page=1&limit=15",
+					"protocol": "https",
+					"host": [
+						"crdlp-dev",
+						"glpg",
+						"com"
+					],
+					"port": "446",
+					"path": [
+						"specialties"
+					],
+					"query": [
+						{
+							"key": "country_iso2",
+							"value": "NL"
+						},
+						{
+							"key": "cod_locale",
+							"value": "nl_NL"
+						},
+						{
+							"key": "page",
+							"value": "1"
+						},
+						{
+							"key": "limit",
+							"value": "15"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST_getConsents",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test(\"Response time is less than 500ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(500);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"content-type": true
+				}
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"filters\": [\r\n    {\r\n      \"name\": \"1\",\r\n      \"fieldName\": \"content_type\",\r\n      \"operator\": \"ci-equal\",\r\n      \"value\": [\r\n        \"Galapagos NEWS\"\r\n      ]\r\n    },\r\n    {\r\n        \"name\": \"2\",\r\n        \"fieldName\": \"capture_datetime\",\r\n        \"operator\": \"date-equal\",\r\n        \"value\": \"2021-11-08\"\r\n    },\r\n    {\r\n        \"name\": \"3\",\r\n        \"fieldName\": \"capture_datetime\",\r\n        \"operator\": \"date-less-than\",\r\n        \"value\": \"2020-01-01\"\r\n    },\r\n     {\r\n        \"name\": \"4\",\r\n        \"fieldName\": \"capture_datetime\",\r\n        \"operator\": \"date-greater-than\",\r\n        \"value\": \"2020-01-01\"\r\n        }\r\n  ],\r\n  \"logic\": \"1 or 2 or 3 or 4\"\r\n}"
+				},
+				"url": {
+					"raw": "https://crdlp-dev.glpg.com:446/consents?page=1&limit=15",
+					"protocol": "https",
+					"host": [
+						"crdlp-dev",
+						"glpg",
+						"com"
+					],
+					"port": "446",
+					"path": [
+						"consents"
+					],
+					"query": [
+						{
+							"key": "page",
+							"value": "1"
+						},
+						{
+							"key": "limit",
+							"value": "15"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST_getAllHcos",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test(\"Response time is less than 500ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(500);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"filters\": [\r\n    {\r\n      \"name\": \"1\",\r\n      \"fieldName\": \"wkp_country\",\r\n      \"operator\": \"ci-equal\",\r\n      \"value\": [\r\n        \"WUK\"\r\n      ]\r\n    },\r\n    {\r\n      \"name\": \"2\",\r\n      \"fieldName\": \"wkp_status_code\",\r\n      \"operator\": \"equal\",\r\n      \"value\": [\r\n        \"STA.3\"\r\n      ]\r\n    },\r\n    {\r\n      \"name\": \"3\",\r\n      \"fieldName\": \"wkp_name\",\r\n      \"operator\": \"contains\",\r\n      \"value\": [\r\n        \"Gastroenterology Department\"\r\n      ]\r\n    },\r\n    {\r\n      \"name\": \"4\",\r\n      \"fieldName\": \"wkp_id_onekey\",\r\n      \"operator\": \"starts-with\",\r\n      \"value\": [\r\n        \"WUKH09276533\"\r\n      ]\r\n    }\r\n  ],\r\n  \"logic\": \"1 or 2 or 3 or 4\"\r\n}"
+				},
+				"url": {
+					"raw": "https://crdlp-dev.glpg.com:446/hcos?page=1&limit=15",
+					"protocol": "https",
+					"host": [
+						"crdlp-dev",
+						"glpg",
+						"com"
+					],
+					"port": "446",
+					"path": [
+						"hcos"
+					],
+					"query": [
+						{
+							"key": "page",
+							"value": "1"
+						},
+						{
+							"key": "limit",
+							"value": "15"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST_getAllHcps",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test(\"Response time is less than 500ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(500);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"content-type": true
+				}
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"filters\": [\r\n    {\r\n      \"name\": \"1\",\r\n      \"fieldName\": \"individual_id_onekey\",\r\n      \"operator\": \"ci-equal\",\r\n      \"value\": [\r\n        \"WATA00002370\"\r\n      ]\r\n    },\r\n    {\r\n      \"name\": \"2\",\r\n      \"fieldName\": \"codbase\",\r\n      \"operator\": \"ci-equal\",\r\n      \"value\": [\r\n        \"WAT\"\r\n      ]\r\n    },\r\n    {\r\n        \"name\": \"3\",\r\n        \"fieldName\": \"crdlp_id\",\r\n        \"operator\": \"less-than\",\r\n        \"value\": 106173\r\n    },\r\n    {\r\n        \"name\": \"4\",\r\n        \"fieldName\": \"crdlp_id\",\r\n        \"operator\": \"greater-than\",\r\n        \"value\": 106173\r\n    },\r\n    {\r\n        \"name\": \"5\",\r\n        \"fieldName\": \"crdlp_id\",\r\n        \"operator\": \"greater-than-or-equal\",\r\n        \"value\": 106173\r\n    }\r\n  ],\r\n  \"logic\": \"1 or 2 or 3 or 4 or 5\"\r\n}"
+				},
+				"url": {
+					"raw": "https://crdlp-dev.glpg.com:446/hcps?page=1&limit=15",
+					"protocol": "https",
+					"host": [
+						"crdlp-dev",
+						"glpg",
+						"com"
+					],
+					"port": "446",
+					"path": [
+						"hcps"
+					],
+					"query": [
+						{
+							"key": "page",
+							"value": "1"
+						},
+						{
+							"key": "limit",
+							"value": "15"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
