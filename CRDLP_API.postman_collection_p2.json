@@ -1,0 +1,366 @@
+{
+	"info": {
+		"_postman_id": "f0e71018-2b9f-48de-a492-3a13ca2d7a4c",
+		"name": "CRDLP_API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "GET_getCountries",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test(\"Response time is less than 500ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(500);\r",
+							"});\r",
+							"pm.test(\"Body contains string-NL\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"NL\");\r",
+							"});\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://crdlp-dev.glpg.com:446/countries?page=1&limit=15",
+					"protocol": "https",
+					"host": [
+						"crdlp-dev",
+						"glpg",
+						"com"
+					],
+					"port": "446",
+					"path": [
+						"countries"
+					],
+					"query": [
+						{
+							"key": "page",
+							"value": "1"
+						},
+						{
+							"key": "limit",
+							"value": "15"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET_getSpecialties",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test(\"Response time is less than 500ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(500);\r",
+							"});\r",
+							"pm.test(\"Body contains string-NL\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"NL\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://crdlp-dev.glpg.com:446/specialties?country_iso2=NL&cod_locale=nl_NL",
+					"protocol": "https",
+					"host": [
+						"crdlp-dev",
+						"glpg",
+						"com"
+					],
+					"port": "446",
+					"path": [
+						"specialties"
+					],
+					"query": [
+						{
+							"key": "country_iso2",
+							"value": "NL"
+						},
+						{
+							"key": "cod_locale",
+							"value": "nl_NL"
+						},
+						{
+							"key": "page",
+							"value": "1",
+							"disabled": true
+						},
+						{
+							"key": "limit",
+							"value": "15",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST_getConsents",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test(\"Response time is less than 500ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(500);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"content-type": true
+				}
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"conditions\": [\r\n    {\r\n      \"condition_id\": \"1\",\r\n      \"field_name\": \"content_type\",\r\n      \"operator\": \"ci-equal\",\r\n      \"values\": [\r\n        \"Galapagos NEWS\"\r\n      ]\r\n    },\r\n    {\r\n        \"condition_id\": \"2\",\r\n        \"field_name\": \"capture_datetime\",\r\n        \"operator\": \"date-equal\",\r\n        \"values\": \"2021-11-08\"\r\n    },\r\n    {\r\n        \"condition_id\": \"3\",\r\n        \"field_name\": \"capture_datetime\",\r\n        \"operator\": \"date-less-than\",\r\n        \"values\": \"2020-01-01\"\r\n    },\r\n     {\r\n        \"condition_id\": \"4\",\r\n        \"field_name\": \"capture_datetime\",\r\n        \"operator\": \"date-greater-than\",\r\n        \"values\": \"2020-01-01\"\r\n        }\r\n  ],\r\n  \"logic\": \"1 or 2 or 3 or 4\"\r\n}"
+				},
+				"url": {
+					"raw": "https://crdlp-dev.glpg.com:446/consents?page=1&limit=15",
+					"protocol": "https",
+					"host": [
+						"crdlp-dev",
+						"glpg",
+						"com"
+					],
+					"port": "446",
+					"path": [
+						"consents"
+					],
+					"query": [
+						{
+							"key": "page",
+							"value": "1"
+						},
+						{
+							"key": "limit",
+							"value": "15"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST_getAllHcos",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test(\"Response time is less than 500ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(500);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"conditions\": [\r\n    {\r\n      \"condition_id\": \"1\",\r\n      \"field_name\": \"wkp_country\",\r\n      \"operator\": \"ci-equal\",\r\n      \"values\": [\r\n        \"WUK\"\r\n      ]\r\n    },\r\n    {\r\n      \"condition_id\": \"2\",\r\n      \"field_name\": \"wkp_status_code\",\r\n      \"operator\": \"equal\",\r\n      \"values\": [\r\n        \"STA.3\"\r\n      ]\r\n    },\r\n    {\r\n      \"condition_id\": \"3\",\r\n      \"field_name\": \"wkp_name\",\r\n      \"operator\": \"contains\",\r\n      \"values\": [\r\n        \"Gastroenterology Department\"\r\n      ]\r\n    },\r\n    {\r\n      \"condition_id\": \"4\",\r\n      \"field_name\": \"wkp_id_onekey\",\r\n      \"operator\": \"starts-with\",\r\n      \"values\": [\r\n        \"WUKH09276533\"\r\n      ]\r\n    }\r\n  ],\r\n  \"logic\": \"1 or 2 or 3 or 4\"\r\n}"
+				},
+				"url": {
+					"raw": "https://crdlp-dev.glpg.com:446/hcos?page=1&limit=15",
+					"protocol": "https",
+					"host": [
+						"crdlp-dev",
+						"glpg",
+						"com"
+					],
+					"port": "446",
+					"path": [
+						"hcos"
+					],
+					"query": [
+						{
+							"key": "page",
+							"value": "1"
+						},
+						{
+							"key": "limit",
+							"value": "15"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET_getAllHcpFields",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test(\"Response time is less than 500ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(500);\r",
+							"});\r",
+							"pm.test(\"Body contains string-Health Care Professional\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"Health Care Professional\");\r",
+							"});\r",
+							"var jsonData = pm.response.json();\r",
+							"jsonData.each(function(item){\r",
+							"    if (item.section === \"Health Care Organization\") {\r",
+							"        pm.test(\"Second section has label info\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"Workplace Country\");\r",
+							"});\r",
+							"    }\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://crdlp-dev.glpg.com:446/hcps/fields",
+					"protocol": "https",
+					"host": [
+						"crdlp-dev",
+						"glpg",
+						"com"
+					],
+					"port": "446",
+					"path": [
+						"hcps",
+						"fields"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST_getAllHcps",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test(\"Response time is less than 500ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(500);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"content-type": true
+				}
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"conditions\": [\r\n    {\r\n      \"condition_id\": \"1\",\r\n      \"field_name\": \"individual_id_onekey\",\r\n      \"operator\": \"ci-equal\",\r\n      \"values\": [\r\n        \"WATA00002370\"\r\n      ]\r\n    },\r\n    {\r\n      \"condition_id\": \"2\",\r\n      \"field_name\": \"codbase\",\r\n      \"operator\": \"ci-equal\",\r\n      \"values\": [\r\n        \"WAT\"\r\n      ]\r\n    },\r\n    {\r\n        \"condition_id\": \"3\",\r\n        \"field_name\": \"crdlp_id\",\r\n        \"operator\": \"less-than\",\r\n        \"values\": 106173\r\n    },\r\n    {\r\n        \"condition_id\": \"4\",\r\n        \"field_name\": \"crdlp_id\",\r\n        \"operator\": \"greater-than\",\r\n        \"values\": 106173\r\n    },\r\n    {\r\n        \"condition_id\": \"5\",\r\n        \"field_name\": \"crdlp_id\",\r\n        \"operator\": \"greater-than-or-equal\",\r\n        \"values\": 106173\r\n    }\r\n  ],\r\n  \"logic\": \"1 or 2 or 3 or 4 or 5\",\r\n  \"response_fields\": [\r\n    \"vwhcpmaster.individual_id_onekey\",\r\n    \"vwhcpmaster.codbase\",\r\n    \"vwhcpmaster.uuid_1\",\r\n    \"vwhcpmaster.uuid_2\",\r\n    \"vwhcpmaster.lastname\",\r\n    \"vwhcpmaster.firstname\",\r\n    \"vwhcpmaster.activity_id_onekey\",\r\n    \"vwhcpmaster.workplace_id_onekey\",\r\n    \"vwhcpmaster.phone\",\r\n    \"vwhcpmaster.language_code\",\r\n    \"vwhcpmaster.gender_code\",\r\n    \"vwhcpmaster.gender_desc\",\r\n    \"vwhcpmaster.email_1\",\r\n    \"vwhcpmaster.adr_id_onekey\",\r\n    \"vwhcpmaster.address_lbl\",\r\n    \"vwhcpmaster.adr_long_lbl\",\r\n    \"vwhcpmaster.postal_city\",\r\n    \"vwhcpmaster.fax\",\r\n    \"vwhcpmaster.telephone\",\r\n    \"vwhcpmaster.telephone_2\",\r\n    \"vwhcpmaster.lgpostcode\",\r\n    \"vwhcpmaster.ind_type_code\",\r\n    \"vwhcpmaster.ind_type_desc\",\r\n    \"vwhcpmaster.status_code\",\r\n    \"vwhcpmaster.ind_status_desc\",\r\n    \"vwhcpmaster.country_iso2\",\r\n    \"vwhcpmaster.ind_privacylawenabled\",\r\n    \"vwhcpmaster.ind_prefixname_desc\",\r\n    \"vwhcpmaster.specialty_1_code\",\r\n    \"vwhcpmaster.specialty_1_long_description\",\r\n    \"vwhcpmaster.specialty_1_short_description\",\r\n    \"vwhcpmaster.specialty_2_code\",\r\n    \"vwhcpmaster.specialty_2_long_description\",\r\n    \"vwhcpmaster.specialty_2_short_description\",\r\n    \"vwhcpmaster.specialty_3_code\",\r\n    \"vwhcpmaster.specialty_3_long_description\",\r\n    \"vwhcpmaster.specialty_3_short_description\",\r\n    \"vwhcpmaster.activity_status_code\",\r\n    \"vwhcpmaster.personemail\",\r\n    \"vwhcpmaster.secondary_email\",\r\n    \"vwhcpmaster.is_market_access\",\r\n    \"vwhcpmaster.activity_warning\",\r\n    \"vwhcpmaster.salesforce_id\",\r\n    \"vwhcpmaster.cdp_id\",\r\n    \"vwhcpmaster.crdlp_id\",\r\n    \"vwhcpmaster.is_territory_changed\",\r\n    \"vwhcpmaster.birth_day\",\r\n    \"vwhcpmaster.birth_year\",\r\n    \"vwhcpmaster.graduation_year\",\r\n    \"vwhcpmaster.ind_academic_title\",\r\n    \"vwhcpmaster.ind_academic_title_desc\",\r\n    \"vwhcpmaster.initials\",\r\n    \"vwhcpmaster.title_code\",\r\n    \"vwhcpmaster.title_code_desc\",\r\n    \"vwhcpmaster.load_date\",\r\n    \"vwhcpmaster.hcp_id_crdlpkey\"\r\n\r\n  ]\r\n}"
+				},
+				"url": {
+					"raw": "https://crdlp-dev.glpg.com:446/hcps?page=1&limit=15",
+					"protocol": "https",
+					"host": [
+						"crdlp-dev",
+						"glpg",
+						"com"
+					],
+					"port": "446",
+					"path": [
+						"hcps"
+					],
+					"query": [
+						{
+							"key": "page",
+							"value": "1"
+						},
+						{
+							"key": "limit",
+							"value": "15"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
